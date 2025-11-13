@@ -1,0 +1,301 @@
+61. O que é uma classe e um objeto?
+
+Classe: é um modelo (ou molde) que define como os objetos serão — descreve atributos (características) e métodos (ações).
+Exemplo:
+
+public class Carro {
+    String modelo;
+    int ano;
+    void acelerar() {
+        System.out.println("O carro está acelerando.");
+    }
+}
+
+
+Objeto: é uma instância de uma classe, ou seja, algo concreto criado a partir dela.
+
+Carro c1 = new Carro();
+c1.modelo = "Civic";
+c1.ano = 2022;
+c1.acelerar();
+
+62. Diferença entre variável de instância e variável local
+
+Variável de instância: declarada dentro da classe, mas fora dos métodos. Cada objeto tem sua própria cópia.
+
+class Pessoa {
+    String nome; // variável de instância
+}
+
+
+Variável local: declarada dentro de métodos e usada apenas durante a execução do método.
+
+void falar() {
+    String mensagem = "Olá"; // variável local
+    System.out.println(mensagem);
+}
+
+63. O que significa encapsulamento em POO?
+
+Encapsulamento é o controle de acesso aos dados de uma classe.
+Os atributos geralmente são privados (private), e o acesso é feito por métodos públicos (get e set).
+Isso impede alterações indevidas e protege a integridade dos dados.
+
+64. Por que usamos métodos get e set?
+
+Para ler (get) e modificar (set) valores de atributos privados de forma controlada.
+Exemplo:
+
+public class Conta {
+    private double saldo;
+    public double getSaldo() {
+        return saldo;
+    }
+    public void setSaldo(double valor) {
+        if (valor >= 0) {
+            saldo = valor;
+        }
+    }
+}
+
+65. Função do construtor em uma classe
+
+O construtor é um método especial que é chamado quando o objeto é criado.
+Ele inicializa os atributos e garante que o objeto comece em um estado válido.
+
+public class Aluno {
+    String nome;
+    int idade;
+    public Aluno(String n, int i) {
+        nome = n;
+        idade = i;
+    }
+}
+
+66. Conceito de sobrecarga de método
+
+A sobrecarga (overloading) ocorre quando existem métodos com o mesmo nome, mas com parâmetros diferentes (em número ou tipo).
+Permite criar métodos semelhantes com comportamentos variados.
+
+void somar(int a, int b) { }
+void somar(double a, double b) { }
+
+67. Diferença entre this e o nome do atributo
+
+this é uma referência ao objeto atual.
+
+É usado para distinguir atributos de parâmetros com o mesmo nome.
+
+public class Produto {
+    private String nome;
+    public Produto(String nome) {
+        this.nome = nome; // 'this.nome' é o atributo, 'nome' é o parâmetro
+    }
+}
+
+68. O que acontece se um construtor não for declarado?
+
+O Java cria automaticamente um construtor padrão (sem parâmetros) que não faz nada além de chamar o construtor da superclasse.
+
+69. Como o Java trata atributos privados em classes?
+
+Atributos private não são acessíveis fora da classe, apenas por meio de métodos públicos (get/set).
+Isso mantém o encapsulamento e protege os dados.
+
+70. Por que é importante comentar o código?
+
+Comentários explicam o que o código faz e por quê, facilitando:
+
+Manutenção futura;
+
+Trabalho em equipe;
+
+Revisão de código;
+
+Entendimento para novos programadores.
+
+🧱 HERANÇA, POLIMORFISMO E RELACIONAMENTOS
+71. O que é herança em Java?
+
+Herança permite que uma classe reutilize código de outra classe.
+A classe derivada (subclasse) herda atributos e métodos da classe base (superclasse).
+
+class Animal {
+    void emitirSom() { System.out.println("Som genérico"); }
+}
+class Cachorro extends Animal {
+    void abanarRabo() { System.out.println("Abanando o rabo"); }
+}
+
+72. O que significa sobrescrita de método?
+
+Sobrescrita (override) é redefinir um método da superclasse na subclasse, mantendo a mesma assinatura, mas mudando o comportamento.
+
+@Override
+void emitirSom() { System.out.println("Latido!"); }
+
+73. Diferença entre herança e composição
+
+Herança: “é um tipo de” → Cachorro é um Animal.
+
+Composição: “tem um” → Carro tem um Motor.
+Composição é mais flexível e reduz o acoplamento.
+
+74. O que é uma superclasse e uma subclasse?
+
+Superclasse: classe genérica que fornece comportamento base.
+
+Subclasse: classe derivada que herda e especializa o comportamento da superclasse.
+
+75. Como o polimorfismo melhora a flexibilidade do código?
+
+O polimorfismo permite que um mesmo método se comporte de formas diferentes, dependendo do tipo real do objeto.
+Isso facilita a extensibilidade e reutilização do código.
+
+76. Quando o super() é utilizado?
+
+Usa-se super() para:
+
+Chamar o construtor da superclasse;
+
+Acessar métodos ou atributos da classe pai.
+
+77. O que acontece se uma subclasse não sobrescrever um método da superclasse?
+
+Ela herda o método com o mesmo comportamento.
+Pode usar diretamente sem redefini-lo.
+
+78. Exemplo prático de polimorfismo
+Animal a1 = new Cachorro();
+Animal a2 = new Gato();
+a1.emitirSom(); // "Latido"
+a2.emitirSom(); // "Miau"
+
+
+Ambos são do tipo Animal, mas se comportam de forma diferente — isso é polimorfismo.
+
+79. Como a herança favorece o reuso de código?
+
+Classes filhas herdam funcionalidades prontas, evitando reescrever código comum, e aumentando a produtividade e consistência.
+
+80. Risco de usar herança de forma inadequada
+
+Heranças mal planejadas podem gerar forte acoplamento, dificuldade de manutenção e classes confusas, quebrando a flexibilidade do sistema.
+
+🧮 VETORES, MATRIZES E ESTRUTURAS
+81. Diferença entre vetor e matriz
+
+Vetor: coleção unidimensional (int[] numeros).
+
+Matriz: coleção bidimensional (int[][] tabela) — semelhante a uma tabela.
+
+82. Como acessar o último elemento de um vetor?
+vetor[vetor.length - 1];
+
+83. O que acontece se tentarmos acessar uma posição inexistente?
+
+O Java lança o erro ArrayIndexOutOfBoundsException — significa que o índice está fora do intervalo permitido.
+
+84. Vantagem de usar laços for em vetores
+
+Permite percorrer automaticamente todas as posições, facilitando leitura, escrita e manipulação dos dados.
+
+85. Conceito de índice em uma estrutura de repetição
+
+É o contador numérico usado para acessar cada posição de um vetor ou matriz.
+Os índices em Java começam em 0.
+
+86. O que é uma matriz tridimensional?
+
+É um array com três dimensões, usado para representar dados em 3 eixos (x, y, z).
+Exemplo: int[][][] cubo = new int[2][2][2];
+
+87. Como percorrer uma matriz bidimensional?
+
+Usa-se dois laços for aninhados:
+
+for (int i = 0; i < matriz.length; i++) {
+    for (int j = 0; j < matriz[i].length; j++) {
+        System.out.println(matriz[i][j]);
+    }
+}
+
+88. Utilidade de arrays em aplicações reais
+
+Armazenar listas de dados, como nomes de clientes, notas, produtos, IDs, etc.
+
+Permitem acesso rápido e organização sequencial de informações.
+
+89. O que significa inicializar um vetor?
+
+É definir valores iniciais para cada posição:
+
+int[] numeros = {1, 2, 3, 4};
+
+90. Como combinar vetores e objetos?
+
+Criando arrays de objetos:
+
+Pessoa[] lista = new Pessoa[3];
+lista[0] = new Pessoa("Maria");
+lista[1] = new Pessoa("João");
+
+🧠 BOAS PRÁTICAS E CONCEITOS AVANÇADOS
+91. Por que separar código em classes diferentes é importante?
+
+Facilita a organização, manutenção e reuso.
+Cada classe deve representar uma responsabilidade específica.
+
+92. O que significa coesão e acoplamento?
+
+Coesão: nível de especialização de uma classe (alta coesão = responsabilidade única).
+
+Acoplamento: grau de dependência entre classes (baixo acoplamento = classes mais independentes).
+
+93. Por que usar comentários descritivos em métodos?
+
+Para documentar a lógica do método, tornando o código compreensível mesmo para quem não o escreveu.
+
+94. Herança múltipla – por que Java não permite diretamente?
+
+Java não permite herança múltipla de classes porque isso geraria ambiguidade quando duas superclasses possuem o mesmo método.
+Em vez disso, usa interfaces, que são mais seguras.
+
+95. Diferença entre static e não estático
+
+static: pertence à classe, e não ao objeto.
+Exemplo: Math.pow().
+
+Não estático: depende de uma instância (objeto criado).
+
+96. Por que é importante testar métodos individualmente?
+
+Os testes unitários garantem que cada método funciona corretamente de forma isolada, antes da integração do sistema todo.
+
+97. Como os conceitos de POO aparecem em sistemas do mundo real?
+
+Um sistema de loja, por exemplo:
+
+Classes: Produto, Cliente, Venda.
+
+Herança: Produto → ProdutoPerecivel.
+
+Encapsulamento: preço é privado.
+
+Polimorfismo: cálculo de desconto depende do tipo de cliente.
+
+98. O que é uma instância de classe?
+
+É um objeto concreto criado a partir da classe.
+Exemplo:
+
+Carro c1 = new Carro();
+
+99. Por que devemos evitar variáveis públicas?
+
+Porque quebram o encapsulamento, permitindo que qualquer parte do código altere o estado da classe sem controle.
+
+100. Qual o papel do método main em um programa Java orientado a objetos?
+
+É o ponto de entrada do programa, onde a execução começa.
+Serve geralmente para criar objetos e chamar métodos.
